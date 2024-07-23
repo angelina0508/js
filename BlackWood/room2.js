@@ -130,6 +130,12 @@ class room2 extends Phaser.Scene {
     // collect items
     this.physics.add.overlap(this.player, [this.Key1, this.Key2, this.Key3, this.Key4, this.Key5], globalCollectKey, null, this);
 
+    this.Key1.postFX.addGlow(0xffffff, 4, 0, false, 0.1, 32);
+    this.Key2.postFX.addGlow(0xffffff, 4, 0, false, 0.1, 32);
+    this.Key3.postFX.addGlow(0xffffff, 4, 0, false, 0.1, 32);
+    this.Key4.postFX.addGlow(0xffffff, 4, 0, false, 0.1, 32);
+    this.Key5.postFX.addGlow(0xffffff, 4, 0, false, 0.1, 32);
+
     // Add collision detection
     this.groundLayer.setCollisionByProperty({ collides: true });
     this.MazeLayer.setCollisionByExclusion(-1, true);

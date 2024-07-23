@@ -266,6 +266,13 @@ class room1 extends Phaser.Scene {
     // camera follow player
     this.cameras.main.startFollow(this.player);
 
+    // glow effect
+    this.Key1.postFX.addGlow(0xffffff, 4, 0, false, 0.1, 32);
+    this.Key2.postFX.addGlow(0xffffff, 4, 0, false, 0.1, 32);
+    this.Key3.postFX.addGlow(0xffffff, 4, 0, false, 0.1, 32);
+    this.Key4.postFX.addGlow(0xffffff, 4, 0, false, 0.1, 32);
+    this.Key5.postFX.addGlow(0xffffff, 4, 0, false, 0.1, 32);
+
     // add collider
     // this.Wall.setCollideWorldBounds(-1, true)
     this.WallLayer.setCollisionByExclusion(-1, true);
