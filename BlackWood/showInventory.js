@@ -14,7 +14,7 @@ class showInventory extends Phaser.Scene {
     preload(){
         //Load heart image
         this.load.image('heart', 'assets/heart.png');
-        this.load.image('key', 'assets/key.png');
+        this.load.image('key', 'assets/Key.png');
     }
  
    create () {
