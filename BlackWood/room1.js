@@ -12,16 +12,16 @@ class room1 extends Phaser.Scene {
 
   preload() {
     // Step 1, load JSON
-    this.load.tilemapTiledJSON("room1", "assets/HotelInn_map.tmj");
+    // this.load.tilemapTiledJSON("room1", "assets/HotelInn_map.tmj");
 
-    // this.load.image("road", "assets/road.png");
-    this.load.image("horror22IMG", "assets/horrorCollection22.png");
-    this.load.image("hFurnitureIMG", "assets/horrorFurniture.png");
-    this.load.image("pipoyaIMG", "assets/pipoya.png");
-    this.load.image("pipoyafIMG", "assets/pipoyafaded.png");
-    this.load.image("StairsIMG", "assets/Stairs.png");
-    this.load.image("Key2IMG", "assets/Key.png");
-    this.load.image("Journal2IMG", "assets/Journal.png");
+    // // this.load.image("road", "assets/road.png");
+    // this.load.image("horror22IMG", "assets/horrorCollection22.png");
+    // this.load.image("hFurnitureIMG", "assets/horrorFurniture.png");
+    // this.load.image("pipoyaIMG", "assets/pipoya.png");
+    // this.load.image("pipoyafIMG", "assets/pipoyafaded.png");
+    // this.load.image("StairsIMG", "assets/Stairs.png");
+    // this.load.image("Key2IMG", "assets/Key.png");
+    // this.load.image("Journal2IMG", "assets/Journal.png");
 
 
     // Load character spritesheet
@@ -46,94 +46,6 @@ class room1 extends Phaser.Scene {
 
     // Create the map
     let map = this.make.tilemap({ key: "room1" });
-
-    // Define animations for the main character
-    // this.anims.create({
-    //   key: "MainCharacter-up",
-    //   frames: this.anims.generateFrameNumbers("MainCharacterIMG", { start: 105, end: 112 }),
-    //   frameRate: 5,
-    //   repeat: -1,
-    // });
-
-    // this.anims.create({
-    //   key: "MainCharacter-left",
-    //   frames: this.anims.generateFrameNumbers("MainCharacterIMG", { start: 118, end: 125 }),
-    //   frameRate: 5,
-    //   repeat: -1,
-    // });
-
-    // this.anims.create({
-    //   key: "MainCharacter-down",
-    //   frames: this.anims.generateFrameNumbers("MainCharacterIMG", { start: 131, end: 138 }),
-    //   frameRate: 5,
-    //   repeat: -1,
-    // });
-
-    // this.anims.create({
-    //   key: "MainCharacter-right",
-    //   frames: this.anims.generateFrameNumbers("MainCharacterIMG", { start: 144, end: 151 }),
-    //   frameRate: 5,
-    //   repeat: -1,
-    // });
-
-    // // Define animations for the Skeleton
-    // this.anims.create({
-    //   key: "Skeleton-up",
-    //   frames: this.anims.generateFrameNumbers("SkeletonIMG", { start: 105, end: 112 }),
-    //   frameRate: 5,
-    //   repeat: -1,
-    // });
-
-    // this.anims.create({
-    //   key: "Skeleton-left",
-    //   frames: this.anims.generateFrameNumbers("SkeletonIMG", { start: 118, end: 125 }),
-    //   frameRate: 5,
-    //   repeat: -1,
-    // });
-
-    // this.anims.create({
-    //   key: "Skeleton-down",
-    //   frames: this.anims.generateFrameNumbers("SkeletonIMG", { start: 131, end: 138 }),
-    //   frameRate: 5,
-    //   repeat: -1,
-    // });
-
-    // this.anims.create({
-    //   key: "Skeleton-right",
-    //   frames: this.anims.generateFrameNumbers("SkeletonIMG", { start: 144, end: 151 }),
-    //   frameRate: 5,
-    //   repeat: -1,
-    // });
-
-
-    // // Define animations for the Jack
-    // this.anims.create({
-    //   key: "Jack-up",
-    //   frames: this.anims.generateFrameNumbers("JackIMG", { start: 105, end: 112 }),
-    //   frameRate: 5,
-    //   repeat: -1,
-    // });
-
-    // this.anims.create({
-    //   key: "Jack-left",
-    //   frames: this.anims.generateFrameNumbers("JackIMG", { start: 118, end: 125 }),
-    //   frameRate: 5,
-    //   repeat: -1,
-    // });
-
-    // this.anims.create({
-    //   key: "Jack-down",
-    //   frames: this.anims.generateFrameNumbers("JackIMG", { start: 131, end: 138 }),
-    //   frameRate: 5,
-    //   repeat: -1,
-    // });
-
-    // this.anims.create({
-    //   key: "Jack-right",
-    //   frames: this.anims.generateFrameNumbers("JackIMG", { start: 144, end: 151 }),
-    //   frameRate: 5,
-    //   repeat: -1,
-    // });
 
     // Load the game tiles
     // 1st parameter is name in Tiled,
@@ -163,19 +75,19 @@ class room1 extends Phaser.Scene {
 
     // Create collect objects
     let Key1 = map.findObject("Object Layer 2", (obj) => obj.name === "Key1");
-    this.Key1 = this.physics.add.sprite(Key1.x, Key1.y, 'Key2IMG')
+    this.Key1 = this.physics.add.sprite(Key1.x, Key1.y, 'Key2IMG').play("KeyAnim")
 
     let Key2 = map.findObject("Object Layer 2", (obj) => obj.name === "Key2");
-    this.Key2 = this.physics.add.sprite(Key2.x, Key2.y, 'Key2IMG')
+    this.Key2 = this.physics.add.sprite(Key2.x, Key2.y, 'Key2IMG').play("KeyAnim")
 
     let Key3 = map.findObject("Object Layer 2", (obj) => obj.name === "Key3");
-    this.Key3 = this.physics.add.sprite(Key3.x, Key3.y, 'Journal2IMG')
+    this.Journal1 = this.physics.add.sprite(Key3.x, Key3.y, 'Journal2IMG').play("JournalAnim")
 
     let Key4 = map.findObject("Object Layer 2", (obj) => obj.name === "Key4");
-    this.Key4 = this.physics.add.sprite(Key4.x, Key4.y, 'Journal2IMG')
+    this.Journal2 = this.physics.add.sprite(Key4.x, Key4.y, 'Journal2IMG').play("JournalAnim")
 
     let Key5 = map.findObject("Object Layer 2", (obj) => obj.name === "Key5");
-    this.Key5 = this.physics.add.sprite(Key5.x, Key5.y, 'Key2IMG')
+    this.Key5 = this.physics.add.sprite(Key5.x, Key5.y, 'Key2IMG').play("KeyAnim")
 
 
     // Create the player sprite at the Start object position
@@ -269,8 +181,8 @@ class room1 extends Phaser.Scene {
     // glow effect
     this.Key1.postFX.addGlow(0xffffff, 4, 0, false, 0.1, 32);
     this.Key2.postFX.addGlow(0xffffff, 4, 0, false, 0.1, 32);
-    this.Key3.postFX.addGlow(0xffffff, 4, 0, false, 0.1, 32);
-    this.Key4.postFX.addGlow(0xffffff, 4, 0, false, 0.1, 32);
+    this.Journal1.postFX.addGlow(0xffffff, 4, 0, false, 0.1, 32);
+    this.Journal2.postFX.addGlow(0xffffff, 4, 0, false, 0.1, 32);
     this.Key5.postFX.addGlow(0xffffff, 4, 0, false, 0.1, 32);
 
     // add collider
@@ -283,11 +195,6 @@ class room1 extends Phaser.Scene {
     this.physics.add.collider(this.player, this.Wall1Layer)
     this.physics.add.collider(this.player, this.Wall2Layer)
     this.physics.add.collider(this.player, this.FenceLayer)
-
-    this.physics.add.overlap(this.player, [this.Enemy1, this.Enemy2, this.Enemy3, this.Enemy4], globalHitEnemy, null, this);
-
-    // collect items
-    this.physics.add.overlap(this.player, [this.Key1, this.Key2, this.Key3, this.Key4, this.Key5], globalCollectKey, null, this);
 
     // Call to update inventory items
     this.time.addEvent({
@@ -302,15 +209,23 @@ class room1 extends Phaser.Scene {
 
     // Call globalFunction globalHitEnemy on overlap
     this.physics.add.overlap(this.player, [this.Enemy1, this.Enemy2, this.Enemy3, this.Enemy4], globalHitEnemy, null, this);
-    this.physics.add.overlap(this.player, [this.key1, this.key2], globalCollectKey, null, this);
+
+    // collect items
+    this.physics.add.overlap(this.player, [this.Key1, this.Key2, this.Key5], globalCollectKey, null, this);
+    this.physics.add.overlap(this.player, [this.Journal1, this.Journal2], globalCollectJournal, null, this);
+
+    // this.physics.add.overlap(this.player, [this.Enemy1, this.Enemy2, this.Enemy3, this.Enemy4], globalHitEnemy, null, this);
+    // this.physics.add.overlap(this.player, [this.key1, this.key2], globalCollectKey, null, this);
+    // this.physics.add.overlap(this.player, [this.key1, this.key2], globalCollectKey, null, this);
 
 
-    // Key to reload the game
-    var bDown = this.input.keyboard.addKey('B');
-    bDown.on('down', function () {
-      console.log("B pressed (room1)");
-      this.scene.start("room2");
-    }, this);
+
+    // // Key to reload the game
+    // var bDown = this.input.keyboard.addKey('B');
+    // bDown.on('down', function () {
+    //   console.log("B pressed (room1)");
+    //   this.scene.start("room2");
+    // }, this);
 
     // Add a full-screen tint overlay
     this.tintOverlay = this.add.graphics({ x: 0, y: 0, fillStyle: { color: 0x000000, alpha: 0.5 } });
