@@ -35,6 +35,7 @@ class world extends Phaser.Scene {
   } /////////////////// end of preload //////////////////////////////
 
   create() {
+    this.scene.bringToTop("world");
     console.log("*** world scene");
     window.music.setVolume(2);
 
