@@ -12,15 +12,15 @@ class room2 extends Phaser.Scene {
 
   preload() {
     // Load the JSON map file
-    this.load.tilemapTiledJSON("room2", "assets/Maze_map.tmj");
+    // this.load.tilemapTiledJSON("room2", "assets/Maze_map.tmj");
 
-    // Load images for the tilesets
-    this.load.image("pipoyaIMG", "assets/pipoya.png");
-    this.load.image("plantIMG", "assets/plant.png");
-    this.load.image("StairsIMG", "assets/Stairs.png");
-    this.load.image("trees-greenIMG", "assets/trees-green.png");
-    this.load.image("Bow2IMG", "assets/Bow.png");
-    this.load.image("Map2IMG", "assets/Map.png");
+    // // Load images for the tilesets
+    // this.load.image("pipoyaIMG", "assets/pipoya.png");
+    // this.load.image("plantIMG", "assets/plant.png");
+    // this.load.image("StairsIMG", "assets/Stairs.png");
+    // this.load.image("trees-greenIMG", "assets/trees-green.png");
+    // this.load.image("Bow2IMG", "assets/Bow.png");
+    // this.load.image("Map2IMG", "assets/Map.png");
 
     // Load character spritesheet
     this.load.spritesheet("MainCharacterIMG", "assets/MainCharacter.png", {
@@ -91,19 +91,19 @@ class room2 extends Phaser.Scene {
 
     // Create collect objects
     let Key1 = map.findObject("ObjectLayer1", (obj) => obj.name === "Key1");
-    this.Key1 = this.physics.add.sprite(Key1.x, Key1.y, 'Bow2IMG')
+    this.Bow1 = this.physics.add.sprite(Key1.x, Key1.y, 'Bow2IMG').play("BowAnim")
 
     let Key2 = map.findObject("ObjectLayer1", (obj) => obj.name === "Key2");
-    this.Key2 = this.physics.add.sprite(Key2.x, Key2.y, 'Map2IMG')
+    this.Map1 = this.physics.add.sprite(Key2.x, Key2.y, 'Map2IMG').play("MapAnim")
 
     let Key3 = map.findObject("ObjectLayer1", (obj) => obj.name === "Key3");
-    this.Key3 = this.physics.add.sprite(Key3.x, Key3.y, 'Bow2IMG')
+    this.Bow2 = this.physics.add.sprite(Key3.x, Key3.y, 'Bow2IMG').play("BowAnim")
 
     let Key4 = map.findObject("ObjectLayer1", (obj) => obj.name === "Key4");
-    this.Key4 = this.physics.add.sprite(Key4.x, Key4.y, 'Bow2IMG')
+    this.Bow3 = this.physics.add.sprite(Key4.x, Key4.y, 'Bow2IMG').play("BowAnim")
 
     let Key5 = map.findObject("ObjectLayer1", (obj) => obj.name === "Key5");
-    this.Key5 = this.physics.add.sprite(Key5.x, Key5.y, 'Map2IMG')
+    this.Map2 = this.physics.add.sprite(Key5.x, Key5.y, 'Map2IMG').play("MapAnim")
 
     // Create the player sprite at the Start object position
     let Start = map.findObject("ObjectLayer2", (obj) => obj.name === "Start");
@@ -127,14 +127,11 @@ class room2 extends Phaser.Scene {
     // Make the camera follow the player
     this.cameras.main.startFollow(this.player);
 
-    // collect items
-    this.physics.add.overlap(this.player, [this.Key1, this.Key2, this.Key3, this.Key4, this.Key5], globalCollectKey, null, this);
-
-    this.Key1.postFX.addGlow(0xffffff, 4, 0, false, 0.1, 32);
-    this.Key2.postFX.addGlow(0xffffff, 4, 0, false, 0.1, 32);
-    this.Key3.postFX.addGlow(0xffffff, 4, 0, false, 0.1, 32);
-    this.Key4.postFX.addGlow(0xffffff, 4, 0, false, 0.1, 32);
-    this.Key5.postFX.addGlow(0xffffff, 4, 0, false, 0.1, 32);
+    this.Bow1.postFX.addGlow(0xffffff, 4, 0, false, 0.1, 32);
+    this.Bow2.postFX.addGlow(0xffffff, 4, 0, false, 0.1, 32);
+    this.Bow3.postFX.addGlow(0xffffff, 4, 0, false, 0.1, 32);
+    this.Map1.postFX.addGlow(0xffffff, 4, 0, false, 0.1, 32);
+    this.Map2.postFX.addGlow(0xffffff, 4, 0, false, 0.1, 32);
 
     // Add collision detection
     this.groundLayer.setCollisionByProperty({ collides: true });
@@ -161,17 +158,20 @@ class room2 extends Phaser.Scene {
     // start another scene in parallel
     this.scene.launch("showInventory");
 
-    // Call globalFunction globalHitFire on overlap
-    this.physics.add.overlap(this.player, [this.Enemy1, this.Enemy2, this.Enemy3, this.Enemy4, this.Enemy5, this.Enemy6], globalHitEnemy, null, this);
-    this.physics.add.overlap(this.player, [this.key1, this.key2], globalCollectKey, null, this);
+    // // Call globalFunction globalHitFire on overlap
+    // this.physics.add.overlap(this.player, [this.Enemy1, this.Enemy2, this.Enemy3, this.Enemy4, this.Enemy5, this.Enemy6], globalHitEnemy, null, this);
+
+    // collect items
+    this.physics.add.overlap(this.player, [this.Bow1, this.Bow2, this.Bow3], globalCollectBow, null, this);
+    this.physics.add.overlap(this.player, [this.Map1, this.Map2], globalCollectMap2, null, this);
 
 
-    // Key to reload the game
-    var cDown = this.input.keyboard.addKey('C');
-    cDown.on('down', function () {
-      console.log("C pressed (room2)");
-      this.scene.start("room3");
-    }, this);
+    // // Key to reload the game
+    // var cDown = this.input.keyboard.addKey('C');
+    // cDown.on('down', function () {
+    //   console.log("C pressed (room2)");
+    //   this.scene.start("room3");
+    // }, this);
 
     // Add a full-screen tint overlay
     this.tintOverlay = this.add.graphics({ x: 0, y: 0, fillStyle: { color: 0x000000, alpha: 0.5 } });

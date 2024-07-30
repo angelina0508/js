@@ -12,16 +12,18 @@ class room3 extends Phaser.Scene {
 
   preload() {
     // Step 1, load JSON
-    this.load.tilemapTiledJSON("room3", "assets/OldMansion.tmj");
+    // this.load.tilemapTiledJSON("room3", "assets/OldMansion.tmj");
 
-    // this.load.image("road", "assets/road.png");
-    this.load.image("horror22IMG", "assets/horrorCollection22.png");
-    this.load.image("hFurnitureIMG", "assets/horrorFurniture.png");
-    this.load.image("pipoyaIMG", "assets/pipoya.png");
-    this.load.image("pipoya2IMG", "assets/pipoya2.png");
-    this.load.image("StairsIMG", "assets/Stairs.png");
-    this.load.image("trees-greenIMG", "assets/trees-green.png");
+    // // this.load.image("road", "assets/road.png");
+    // this.load.image("horror22IMG", "assets/horrorCollection22.png");
+    // this.load.image("hFurnitureIMG", "assets/horrorFurniture.png");
+    // this.load.image("pipoyaIMG", "assets/pipoya.png");
+    // this.load.image("pipoya2IMG", "assets/pipoya2.png");
+    // this.load.image("StairsIMG", "assets/Stairs.png");
+    // this.load.image("trees-greenIMG", "assets/trees-green.png");
+    this.load.image("bullet", "assets/Arrow.png");
 
+    
     // Load character spritesheet
     this.load.spritesheet("MainCharacterIMG", "assets/MainCharacter.png", {
       frameWidth: 64,
@@ -44,95 +46,6 @@ class room3 extends Phaser.Scene {
 
     // Create the map
     let map = this.make.tilemap({ key: "room3" });
-
-    // Define animations for the main character
-    // this.anims.create({
-    //   key: "MainCharacter-up",
-    //   frames: this.anims.generateFrameNumbers("MainCharacterIMG", { start: 105, end: 112 }),
-    //   frameRate: 5,
-    //   repeat: -1,
-    // });
-
-    // this.anims.create({
-    //   key: "MainCharacter-left",
-    //   frames: this.anims.generateFrameNumbers("MainCharacterIMG", { start: 118, end: 125 }),
-    //   frameRate: 5,
-    //   repeat: -1,
-    // });
-
-    // this.anims.create({
-    //   key: "MainCharacter-down",
-    //   frames: this.anims.generateFrameNumbers("MainCharacterIMG", { start: 131, end: 138 }),
-    //   frameRate: 5,
-    //   repeat: -1,
-    // });
-
-    // this.anims.create({
-    //   key: "MainCharacter-right",
-    //   frames: this.anims.generateFrameNumbers("MainCharacterIMG", { start: 144, end: 151 }),
-    //   frameRate: 5,
-    //   repeat: -1,
-    // });
-
-    // Define animations for the Skeleton
-    // this.anims.create({
-    //   key: "Skeleton-up",
-    //   frames: this.anims.generateFrameNumbers("SkeletonIMG", { start: 105, end: 112 }),
-    //   frameRate: 5,
-    //   repeat: -1,
-    // });
-
-    // this.anims.create({
-    //   key: "Skeleton-left",
-    //   frames: this.anims.generateFrameNumbers("SkeletonIMG", { start: 118, end: 125 }),
-    //   frameRate: 5,
-    //   repeat: -1,
-    // });
-
-    // this.anims.create({
-    //   key: "Skeleton-down",
-    //   frames: this.anims.generateFrameNumbers("SkeletonIMG", { start: 131, end: 138 }),
-    //   frameRate: 5,
-    //   repeat: -1,
-    // });
-
-    // this.anims.create({
-    //   key: "Skeleton-right",
-    //   frames: this.anims.generateFrameNumbers("SkeletonIMG", { start: 144, end: 151 }),
-    //   frameRate: 5,
-    //   repeat: -1,
-    // });
-
-
-    // // Define animations for the Jack
-    // this.anims.create({
-    //   key: "Jack-up",
-    //   frames: this.anims.generateFrameNumbers("JackIMG", { start: 105, end: 112 }),
-    //   frameRate: 5,
-    //   repeat: -1,
-    // });
-
-    // this.anims.create({
-    //   key: "Jack-left",
-    //   frames: this.anims.generateFrameNumbers("JackIMG", { start: 118, end: 125 }),
-    //   frameRate: 5,
-    //   repeat: -1,
-    // });
-
-    // this.anims.create({
-    //   key: "Jack-down",
-    //   frames: this.anims.generateFrameNumbers("JackIMG", { start: 131, end: 138 }),
-    //   frameRate: 5,
-    //   repeat: -1,
-    // });
-
-    // this.anims.create({
-    //   key: "Jack-right",
-    //   frames: this.anims.generateFrameNumbers("JackIMG", { start: 144, end: 151 }),
-    //   frameRate: 5,
-    //   repeat: -1,
-    // });
-
 
     // Load the game tiles
     // 1st parameter is name in Tiled,
@@ -278,6 +191,32 @@ class room3 extends Phaser.Scene {
     // Enable debugging
     window.player = this.player;
 
+    this.bullet = this.physics.add.sprite(
+      this.player.x,
+      this.player.y,
+      "bullet"
+    )
+    this.bullet.setVisible(false);
+
+    let attackLeft = this.input.keyboard.addKey("z");
+let attackRight = this.input.keyboard.addKey("x");
+
+attackLeft.on(
+  "down",
+  function () {
+    this.attackLeft();
+  },
+  this
+);
+
+attackRight.on(
+  "down",
+  function () {
+    this.attackRight();
+  },
+  this
+);
+
     this.player.setCollideWorldBounds(true); // don't go out of the this.map
 
     // create the arrow keys
@@ -314,14 +253,16 @@ class room3 extends Phaser.Scene {
     // Call globalFunction globalHitFire on overlap
     this.physics.add.overlap(this.player, [this.Enemy1, this.Enemy2, this.Enemy3, this.Enemy4, this.Enemy5, this.Enemy6], globalHitEnemy, null, this);
     this.physics.add.overlap(this.player, [this.key1, this.key2], globalCollectKey, null, this);
+    this.physics.add.overlap(this.bullet, [this.Enemy1, this.Enemy2, this.Enemy3, this.Enemy4, this.Enemy5, this.Enemy6], globalShootEnemy, null, this);
 
 
-    // Key to reload the game
-    var bDown = this.input.keyboard.addKey('B');
-    bDown.on('down', function () {
-      console.log("C pressed (room3)");
-      this.scene.start("room3");
-    }, this);
+
+    // // Key to reload the game
+    // var bDown = this.input.keyboard.addKey('B');
+    // bDown.on('down', function () {
+    //   console.log("C pressed (room3)");
+    //   this.scene.start("room3");
+    // }, this);
 
     // Add a full-screen tint overlay
     this.tintOverlay = this.add.graphics({ x: 0, y: 0, fillStyle: { color: 0x000000, alpha: 0.5 } });
@@ -338,8 +279,8 @@ class room3 extends Phaser.Scene {
       this.player.y < 486 &&
       this.player.y > 473
     ) {
-      console.log("Go to world function");
-      this.world();
+      console.log("Go to win function");
+      this.win();
     }
 
     // Handle player movement based on cursor keys
@@ -360,6 +301,35 @@ class room3 extends Phaser.Scene {
       this.player.body.setVelocity(0, 0);
     }
   } /////////////////// end of update //////////////////////////////
+
+  attackLeft() {
+    
+    console.log("attack left");
+
+    this.bullet.x = this.player.x;
+    this.bullet.y = this.player.y;
+
+    this.bullet.setVisible(true);
+    this.bullet.body.setEnable(true);
+
+	  // speed of the bullet
+    this.bullet.body.setVelocityX(-500);
+  }
+
+  attackRight() {
+    
+    console.log("attack right");
+
+    this.bullet.x = this.player.x;
+    this.bullet.y = this.player.y;
+
+    this.bullet.setVisible(true);
+    this.bullet.body.setEnable(true);
+
+	  // speed of the bullet
+    this.bullet.body.setVelocityX(500);
+  }
+
   hitEnemy(player, enemy) {
     console.log("Player hit enemy");
 
@@ -370,10 +340,16 @@ class room3 extends Phaser.Scene {
     enemy.disableBody(true, true);
   }
 
-   // Function to jump to room1
-   world(player, tile) {
-    console.log("world function");
-    this.scene.start("world");
+  //  // Function to jump to room1
+  //  world(player, tile) {
+  //   console.log("world function");
+  //   this.scene.start("world");
+  // }
+
+  // Function to jump to room1
+  win(player, tile) {
+    console.log("win function");
+    this.scene.start("win");
   }
 
 }

@@ -15,15 +15,14 @@ class world extends Phaser.Scene {
 
   preload() {
     // Load the JSON map file
-    this.load.tilemapTiledJSON("world", "assets/Blackwood.tmj");
+    // this.load.tilemapTiledJSON("world", "assets/Blackwood.tmj");
 
-    // Load images for the tilesets
-    this.load.image("pipoyaIMG", "assets/pipoya.png");
-    this.load.image("plantIMG", "assets/plant.png");
-    this.load.image("StairsIMG", "assets/Stairs.png");
-    this.load.image("trees-greenIMG", "assets/trees-green.png");
-    this.load.image("horror22IMG", "assets/horrorCollection22.png");
-    this.load.image("BowIMG", "assets/Bow.png");
+    // // Load images for the tilesets
+    // this.load.image("pipoyaIMG", "assets/pipoya.png");
+    // this.load.image("plantIMG", "assets/plant.png");
+    // this.load.image("StairsIMG", "assets/Stairs.png");
+    // this.load.image("trees-greenIMG", "assets/trees-green.png");
+    // this.load.image("horror22IMG", "assets/horrorCollection22.png");
 
     // sound effect
     this.load.audio("bgmusic", "assets/horrorSoundtrack1.mp3");
@@ -39,38 +38,8 @@ class world extends Phaser.Scene {
     console.log("*** world scene");
 
     // Create the map
-    let map = this.make.tilemap({
-      key: "world",
-    });
-
-    // Define animations for the main character
-    // this.anims.create({
-    //   key: "MainCharacter-up",
-    //   frames: this.anims.generateFrameNumbers("MainCharacterIMG", { start: 105, end: 112 }),
-    //   frameRate: 5,
-    //   repeat: -1,
-    // });
-
-    // this.anims.create({
-    //   key: "MainCharacter-left",
-    //   frames: this.anims.generateFrameNumbers("MainCharacterIMG", { start: 118, end: 125 }),
-    //   frameRate: 5,
-    //   repeat: -1,
-    // });
-
-    // this.anims.create({
-    //   key: "MainCharacter-down",
-    //   frames: this.anims.generateFrameNumbers("MainCharacterIMG", { start: 131, end: 138 }),
-    //   frameRate: 5,
-    //   repeat: -1,
-    // });
-
-    // this.anims.create({
-    //   key: "MainCharacter-right",
-    //   frames: this.anims.generateFrameNumbers("MainCharacterIMG", { start: 144, end: 151 }),
-    //   frameRate: 5,
-    //   repeat: -1,
-    // });
+    let map = this.make.tilemap({ key: "world", });
+    console.log("Map created");
 
     // Load the game tiles
     let horror22Tiles = map.addTilesetImage("horrorCollection22", "horror22IMG");
@@ -80,9 +49,16 @@ class world extends Phaser.Scene {
     let treesgreenTiles = map.addTilesetImage("trees-green", "trees-greenIMG");
 
     let tilesArray = [horror22Tiles, pipoyaTiles, plantTiles, StairsTiles, treesgreenTiles];
+    console.log("Tilesets loaded");
 
     // Load layers from the map
     this.groundLayer = map.createLayer("Ground", tilesArray, 0, 0);
+    console.log("Ground layer created");
+
+    // Check if layers are properly created
+    // console.log("Ground layer width:", this.groundLayer.width);
+    // console.log("Ground layer height:", this.groundLayer.height);
+
     this.Tree4Layer = map.createLayer("Tree4", tilesArray, 0, 0);
     this.Tree3Layer = map.createLayer("Tree3", tilesArray, 0, 0);
     this.Tree2Layer = map.createLayer("Tree2", tilesArray, 0, 0);
@@ -94,21 +70,24 @@ class world extends Phaser.Scene {
     // Set world bounds
     this.physics.world.bounds.width = this.groundLayer.width;
     this.physics.world.bounds.height = this.groundLayer.height;
+    this.cameras.main.setBounds(0, 0, this.groundLayer.width, this.groundLayer.height);
+
 
     // Create the player sprite at the Start object position
     let Start = map.findObject("Object Layer 1", (obj) => obj.name === "Start");
     this.player = this.physics.add.sprite(Start.x, Start.y, 'MainCharacterIMG');
     this.player.setCollideWorldBounds(true);
-    this.player.body.setSize(this.player.width * 0.6, this.player.height * 0.8)
+    this.player.body.setSize(this.player.width * 0.6, this.player.height * 0.8);
+
 
     // Debug player
     window.player = this.player;
 
     // Add any text to the game
-    this.add.text(10, 10, "Add any text here", {
-      font: "30px Courier",
-      fill: "#00FFFF",
-    });
+    // this.add.text(10, 10, "Add any text here", {
+    //   font: "30px Courier",
+    //   fill: "#00FFFF",
+    // });
 
     // Create the cursor keys for player movement
     this.cursors = this.input.keyboard.createCursorKeys();
@@ -135,10 +114,10 @@ class world extends Phaser.Scene {
     });
 
     // Key to reload the game
-    var aDown = this.input.keyboard.addKey('A');
+    var aDown = this.input.keyboard.addKey('R');
     aDown.on('down', function () {
-      console.log("A pressed (world)");
-      this.scene.start("room1");
+      console.log("R pressed (world)");
+      this.scene.start("room3intro");
     }, this);
 
     // Call to update inventory items
@@ -160,7 +139,7 @@ class world extends Phaser.Scene {
 
   update() {
     let speed = 200;
-    
+
     // room1
     if (
       this.player.x > 220 &&
@@ -209,7 +188,7 @@ class world extends Phaser.Scene {
       this.player.body.setVelocity(0, 0);
     }
 
-    
+
   } /////////////////// end of update //////////////////////////////
 
   // Function room1
@@ -227,4 +206,5 @@ class world extends Phaser.Scene {
     console.log("Function to jump to room3 scene");
     this.scene.start("room3");
   }
+
 } //////////// end of class world ////////////////////////
