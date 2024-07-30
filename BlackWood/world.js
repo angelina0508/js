@@ -35,8 +35,8 @@ class world extends Phaser.Scene {
   } /////////////////// end of preload //////////////////////////////
 
   create() {
-    this.scene.bringToTop("world");
     console.log("*** world scene");
+    window.music.setVolume(2);
 
     // Create the map
     let map = this.make.tilemap({ key: "world", });

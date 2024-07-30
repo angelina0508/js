@@ -10,6 +10,8 @@ preload(){
     create() {
         this.scene.bringToTop("character");
         console.log("*** character");
+        window.music.setVolume(2);
+
 
         this.scene.bringToTop("character");
 

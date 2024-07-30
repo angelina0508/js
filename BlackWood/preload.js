@@ -232,9 +232,9 @@
     });
 
     // turn on loop, adjust the volume
-    this.music = this.sound.add("bgmusic", { loop: true }).setVolume(2);
+    window.music = this.sound.add("bgmusic", { loop: true }).setVolume(2);
     // start the background music
-    this.music.play();
+    window.music.play();
 
    this.scene.start("main")
 

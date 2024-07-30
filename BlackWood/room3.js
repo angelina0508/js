@@ -279,8 +279,8 @@ class room3 extends Phaser.Scene {
     //   this.player.y < 486 &&
     //   this.player.y > 473
     // ) {
-    //   console.log("Go to win function");
-    //   this.win();
+    //   console.log("Go to world function");
+    //   this.world();
     // }
 
     if (window.enemy > 5) {

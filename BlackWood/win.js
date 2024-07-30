@@ -11,10 +11,7 @@ class win extends Phaser.Scene {
     this.scene.bringToTop("win");
     console.log("*** win");
 
-    // turn on loop, adjust the volume
-    this.music = this.sound.add("victorySnd", { loop: false }).setVolume(1);
-    // start the background music
-    this.music.play();
+    window.music.setVolume(0);
 
     // Add image and detect spacebar keypress
     this.add.image(0, 0, 'winScene').setOrigin(0, 0);
@@ -23,7 +20,7 @@ class win extends Phaser.Scene {
 
     // On spacebar event, call the world scene
     enterDown.on("down", function () {
-      console.log("Jump to main scene");
+      console.log("Jump to world scene");
       window.heart = 3;
       window.key = 0;
       window.enemy = 0;
@@ -32,10 +29,15 @@ class win extends Phaser.Scene {
       window.bow = 0;
       window.pam = 0;
 
-      this.scene.start("main");
+      this.scene.start("world");
     },
       this
     );
+
+    // turn on loop, adjust the volume
+    this.music = this.sound.add("victorySnd", { loop: false }).setVolume(0.5);
+    // start the background music
+    this.music.play();
 
   }
 
