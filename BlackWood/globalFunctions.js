@@ -37,18 +37,21 @@ function globalHitEnemy(player, item) {
 
   // deduct heart
   window.heart--;
+  console.log(window.heart)
   item.disableBody(true, true);
 
   this.hitEnemySnd = this.sound.add("hitSound").setVolume(1);
   this.hitEnemySnd.play()
+
+  // Call globalFunctions.js updateInventory
+  updateInventory.call(this)
 
   if (window.heart == 0) {
     console.log("*** player gameOver");
     this.scene.start("gameOver");
     //this.loselifeSnd.play();
 
-    // Call globalFunctions.js updateInventory
-  updateInventory.call(this)
+
   }
 }
 
@@ -144,8 +147,21 @@ function globalShootEnemy(player, item) {
   // play the sound
   this.arrowShootSnd.play()
 
+  window.enemy++
 
   //this.hitenemySnd.play();
+
+  // // deduct heart
+  // window.heart--;
+  // item.disableBody(true, true);
+
+  // this.hitEnemySnd = this.sound.add("hitSound").setVolume(1);
+  // this.hitEnemySnd.play()
+
+  // if (window.heart == 0) {
+  //   console.log("*** player gameOver");
+  //   this.scene.start("gameOver");
+  //   //this.loselifeSnd.play();
 
   // increase key count
   item.disableBody(true, true);

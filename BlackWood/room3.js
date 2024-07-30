@@ -23,7 +23,7 @@ class room3 extends Phaser.Scene {
     // this.load.image("trees-greenIMG", "assets/trees-green.png");
     this.load.image("bullet", "assets/Arrow.png");
 
-    
+
     // Load character spritesheet
     this.load.spritesheet("MainCharacterIMG", "assets/MainCharacter.png", {
       frameWidth: 64,
@@ -42,6 +42,7 @@ class room3 extends Phaser.Scene {
   } /////////////////// end of preload //////////////////////////////
 
   create() {
+    this.scene.bringToTop("room3");
     console.log("*** room3 scene");
 
     // Create the map
@@ -91,7 +92,7 @@ class room3 extends Phaser.Scene {
     this.Enemy1 = this.physics.add.sprite(Enemy1.x, Enemy1.y, 'SkeletonIMG').play("Skeleton-left")
 
     this.Enemy1.body.setSize(this.Enemy1.width * 0.6, this.Enemy1.height * 0.8)
-    
+
     this.tweens.add({
       targets: this.Enemy1,
       x: 330,
@@ -104,7 +105,7 @@ class room3 extends Phaser.Scene {
     let Enemy2 = map.findObject("Object Layer 1", (obj) => obj.name === "Enemy2");
     this.Enemy2 = this.physics.add.sprite(Enemy2.x, Enemy2.y, 'JackIMG');
     this.Enemy2.body.setSize(this.Enemy2.width * 0.6, this.Enemy2.height * 0.8)
-   
+
     this.tweens.add({
       targets: this.Enemy2,
       y: 460,
@@ -127,7 +128,7 @@ class room3 extends Phaser.Scene {
     let Enemy3 = map.findObject("Object Layer 1", (obj) => obj.name === "Enemy3");
     this.Enemy3 = this.physics.add.sprite(Enemy3.x, Enemy3.y, 'SkeletonIMG').play("Skeleton-left")
     this.Enemy3.body.setSize(this.Enemy3.width * 0.6, this.Enemy3.height * 0.8)
-    
+
     this.tweens.add({
       targets: this.Enemy3,
       x: 720,
@@ -140,7 +141,7 @@ class room3 extends Phaser.Scene {
     let Enemy4 = map.findObject("Object Layer 1", (obj) => obj.name === "Enemy4");
     this.Enemy4 = this.physics.add.sprite(Enemy4.x, Enemy4.y, 'JackIMG').play("Jack-right")
     this.Enemy4.body.setSize(this.Enemy4.width * 0.6, this.Enemy4.height * 0.8)
-    
+
     this.tweens.add({
       targets: this.Enemy4,
       x: 920,
@@ -153,7 +154,7 @@ class room3 extends Phaser.Scene {
     let Enemy5 = map.findObject("Object Layer 1", (obj) => obj.name === "Enemy5");
     this.Enemy5 = this.physics.add.sprite(Enemy5.x, Enemy5.y, 'JackIMG');
     this.Enemy5.body.setSize(this.Enemy5.width * 0.6, this.Enemy5.height * 0.8)
-    
+
     this.tweens.add({
       targets: this.Enemy5,
       y: 350,
@@ -163,12 +164,12 @@ class room3 extends Phaser.Scene {
       repeat: -1,
 
       onYoyo: () => {
-        console.log('onYoyo, play Enemy5-up anims');
+        // console.log('onYoyo, play Enemy5-up anims');
         this.Enemy5.play("Jack-down")
 
       },
       onRepeat: () => {
-        console.log('onRepeat, play Enemy5-down anims');
+        // console.log('onRepeat, play Enemy5-down anims');
         this.Enemy5.play("Jack-up")
       },
     })
@@ -176,7 +177,7 @@ class room3 extends Phaser.Scene {
     let Enemy6 = map.findObject("Object Layer 1", (obj) => obj.name === "Enemy6");
     this.Enemy6 = this.physics.add.sprite(Enemy6.x, Enemy6.y, 'SkeletonIMG').play("Skeleton-left")
     this.Enemy6.body.setSize(this.Enemy6.width * 0.6, this.Enemy6.height * 0.8)
-    
+
     this.tweens.add({
       targets: this.Enemy6,
       x: 320,
@@ -186,7 +187,6 @@ class room3 extends Phaser.Scene {
       repeat: -1
     })
 
-    /////////////////// end of create //////////////////////////////
 
     // Enable debugging
     window.player = this.player;
@@ -199,23 +199,23 @@ class room3 extends Phaser.Scene {
     this.bullet.setVisible(false);
 
     let attackLeft = this.input.keyboard.addKey("z");
-let attackRight = this.input.keyboard.addKey("x");
+    let attackRight = this.input.keyboard.addKey("x");
 
-attackLeft.on(
-  "down",
-  function () {
-    this.attackLeft();
-  },
-  this
-);
+    attackLeft.on(
+      "down",
+      function () {
+        this.attackLeft();
+      },
+      this
+    );
 
-attackRight.on(
-  "down",
-  function () {
-    this.attackRight();
-  },
-  this
-);
+    attackRight.on(
+      "down",
+      function () {
+        this.attackRight();
+      },
+      this
+    );
 
     this.player.setCollideWorldBounds(true); // don't go out of the this.map
 
@@ -237,7 +237,7 @@ attackRight.on(
 
     // this.physics.add.collider(this.player, [this.Wall])
 
-    this.physics.add.overlap(this.player, [this.Enemy1, this.Enemy2, this.Enemy3, this.Enemy4, this.Enemy5, this.Enemy6], this.hitEnemy, null, this);
+    // this.physics.add.overlap(this.player, [this.Enemy1, this.Enemy2, this.Enemy3, this.Enemy4, this.Enemy5, this.Enemy6], this.hitEnemy, null, this);
 
     // Call to update inventory items
     this.time.addEvent({
@@ -246,10 +246,10 @@ attackRight.on(
       callbackScope: this,
       loop: false,
     });
-    
+
     // start another scene in parallel
     this.scene.launch("showInventory");
-    
+
     // Call globalFunction globalHitFire on overlap
     this.physics.add.overlap(this.player, [this.Enemy1, this.Enemy2, this.Enemy3, this.Enemy4, this.Enemy5, this.Enemy6], globalHitEnemy, null, this);
     this.physics.add.overlap(this.player, [this.key1, this.key2], globalCollectKey, null, this);
@@ -274,13 +274,17 @@ attackRight.on(
   update() {
     let speed = 200;
 
-    if (
-      this.player.x < 60 &&
-      this.player.y < 486 &&
-      this.player.y > 473
-    ) {
-      console.log("Go to win function");
-      this.win();
+    // if (
+    //   this.player.x < 60 &&
+    //   this.player.y < 486 &&
+    //   this.player.y > 473
+    // ) {
+    //   console.log("Go to win function");
+    //   this.win();
+    // }
+
+    if (window.enemy > 5) {
+      this.win()
     }
 
     // Handle player movement based on cursor keys
@@ -303,7 +307,7 @@ attackRight.on(
   } /////////////////// end of update //////////////////////////////
 
   attackLeft() {
-    
+
     console.log("attack left");
 
     this.bullet.x = this.player.x;
@@ -312,12 +316,12 @@ attackRight.on(
     this.bullet.setVisible(true);
     this.bullet.body.setEnable(true);
 
-	  // speed of the bullet
+    // speed of the bullet
     this.bullet.body.setVelocityX(-500);
   }
 
   attackRight() {
-    
+
     console.log("attack right");
 
     this.bullet.x = this.player.x;
@@ -326,19 +330,10 @@ attackRight.on(
     this.bullet.setVisible(true);
     this.bullet.body.setEnable(true);
 
-	  // speed of the bullet
+    // speed of the bullet
     this.bullet.body.setVelocityX(500);
   }
 
-  hitEnemy(player, enemy) {
-    console.log("Player hit enemy");
-
-    // shake screen
-    this.cameras.main.shake(300);
-
-    // disable enemy body
-    enemy.disableBody(true, true);
-  }
 
   //  // Function to jump to room1
   //  world(player, tile) {

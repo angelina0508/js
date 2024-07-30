@@ -4,14 +4,15 @@ class gameOver extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image("gameOverImg", "assets/gameOver.jpg");
+    // this.load.image("gameOverImg", "assets/gameOver.jpg");
 
     // Load sound effect
-    this.load.audio("loseSound", "assets/loseSound.mp3");
+    // this.load.audio("loseSound", "assets/loseSound.mp3");
 
   }
 
   create() {
+    this.scene.bringToTop("gameOver");
     console.log("*** gameover scene");
 
     // Add image and detect spacebar keypress
@@ -25,6 +26,11 @@ class gameOver extends Phaser.Scene {
       console.log("Jump to tutorial scene");
       window.heart = 3;
       window.key = 0;
+      window.enemy = 0;
+      window.key = 0;
+      window.journal = 0;
+      window.bow = 0;
+      window.pam = 0;
 
       this.scene.start("world");
     },

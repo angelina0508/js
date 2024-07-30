@@ -122,12 +122,12 @@ class room1 extends Phaser.Scene {
       repeat: -1,
 
       onYoyo: () => {
-        console.log('onYoyo, play Enemy2-up anims');
+        // console.log('onYoyo, play Enemy2-up anims');
         this.Enemy2.play("Jack-up")
 
       },
       onRepeat: () => {
-        console.log('onRepeat, play Enemy2-down anims');
+        // console.log('onRepeat, play Enemy2-down anims');
         this.Enemy2.play("Jack-down")
       },
     })

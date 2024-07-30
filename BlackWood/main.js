@@ -11,11 +11,12 @@ class main extends Phaser.Scene {
     preload() {
 
         // Preload any images here
-        this.load.image("mainScene", "assets/Intro.png");
+        // this.load.image("mainScene", "assets/Intro.png");
 
     }
 
     create() {
+        this.scene.bringToTop("main");
         console.log('*** main scene');
 
         // this.scene.bringToTop("main");

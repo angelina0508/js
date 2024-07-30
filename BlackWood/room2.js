@@ -191,6 +191,11 @@ class room2 extends Phaser.Scene {
       this.world();
     }
 
+    // if (window.bow > 2) (window.pam > 1) {
+    //   this.world()
+    // }
+
+
     // Handle player movement based on cursor keys
     if (this.cursors.left.isDown) {
       this.player.body.setVelocityX(-speed);

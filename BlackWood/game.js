@@ -25,3 +25,4 @@ window.key = 0
 window.journal = 0
 window.bow = 0
 window.pam = 0
+window.enemy = 0

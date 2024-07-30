@@ -4,10 +4,11 @@ class character extends Phaser.Scene {
     }
 
 preload(){
-    this.load.image("character", "assets/Character.png");
+    // this.load.image("character", "assets/Character.png");
 }
 
     create() {
+        this.scene.bringToTop("character");
         console.log("*** character");
 
         this.scene.bringToTop("character");

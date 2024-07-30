@@ -11,11 +11,12 @@ class storyline extends Phaser.Scene {
     preload() {
 
         // Preload any images here
-        this.load.image("storyline", "assets/Storyline.png");
+        // this.load.image("storyline", "assets/Storyline.png");
 
     }
 
     create() {
+        this.scene.bringToTop("storyline");
         console.log('*** storyline');
 
         // this.scene.bringToTop("main");

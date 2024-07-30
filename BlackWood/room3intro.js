@@ -11,14 +11,14 @@ class room3intro extends Phaser.Scene {
     preload() {
 
         // Preload any images here
-        this.load.image("room3intro", "assets/Storyboard3.png");
+        // this.load.image("room3intro", "assets/Storyboard3.png");
 
     }
 
     create() {
+        this.scene.bringToTop("room3intro");
         console.log('*** room3 intro');
 
-        // this.scene.bringToTop("main");
 
         this.add.image(0, 0, 'room3intro').setOrigin(0, 0);
 

@@ -23,15 +23,16 @@
     this.load.image("pipoyafIMG", "assets/pipoyafaded.png");
     this.load.image("pipoya2IMG", "assets/pipoya2.png");
 
-    // this.load.image("mainScene", "assets/Intro.png");
-    // this.load.image("storyline", "assets/Storyline.png");
-    // this.load.image("character", "assets/Character.png");
-    // this.load.image("room1intro", "assets/Storyboard.png");
-    // this.load.image("room2intro", "assets/Storyboard2.png");
-    // this.load.image("room3intro", "assets/Storyboard3.png");
-
-    // this.load.image("winScene", "assets/Win.png");
-    // this.load.image("character", "assets/Character.png");
+    // load images for storyborad
+    this.load.image("mainScene", "assets/Intro.png");
+    this.load.image("storyline", "assets/Storyline.png");
+    this.load.image("character", "assets/Character.png");
+    this.load.image("room1intro", "assets/Storyboard.png");
+    this.load.image("room2intro", "assets/Storyboard2.png");
+    this.load.image("room3intro", "assets/Storyboard3.png");
+    this.load.image("gameOverImg", "assets/gameOver.jpg");
+    this.load.image("winScene", "assets/Win.png");
+    
 
     // Items
     // this.load.image("Key2IMG", "assets/Key.png");
@@ -84,6 +85,7 @@
     this.load.audio("hitSound", "assets/hitSound.mp3");
     this.load.audio("victorySnd", "assets/gameSuccess.mp3");
     this.load.audio("arrowShoot", "assets/arrowShoot.mp3");
+    
     
 
   } /////////////////// end of preload //////////////////////////////

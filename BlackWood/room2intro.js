@@ -11,11 +11,12 @@ class room2intro extends Phaser.Scene {
     preload() {
 
         // Preload any images here
-        this.load.image("room2intro", "assets/Storyboard2.png");
+        // this.load.image("room2intro", "assets/Storyboard2.png");
 
     }
 
     create() {
+        this.scene.bringToTop("room2intro");
         console.log('*** room2 intro');
 
         // this.scene.bringToTop("main");
