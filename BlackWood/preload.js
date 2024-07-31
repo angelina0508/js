@@ -91,7 +91,6 @@
   } /////////////////// end of preload //////////////////////////////
 
   create() {
-    this.scene.bringToTop("preload");
     console.log("*** preload scene");
 
     // Check for spacebar or any key here
