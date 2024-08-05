@@ -43,7 +43,7 @@ class room3 extends Phaser.Scene {
 
   create() {
     this.scene.bringToTop("room3");
-    console.log("*** room3 scene");
+    // console.log("*** room3 scene");
 
     // Create the map
     let map = this.make.tilemap({ key: "room3" });
@@ -115,12 +115,12 @@ class room3 extends Phaser.Scene {
       repeat: -1,
 
       onYoyo: () => {
-        console.log('onYoyo, play Enemy2-up anims');
+        // console.log('onYoyo, play Enemy2-up anims');
         this.Enemy2.play("Jack-up")
 
       },
       onRepeat: () => {
-        console.log('onRepeat, play Enemy2-down anims');
+        // console.log('onRepeat, play Enemy2-down anims');
         this.Enemy2.play("Jack-down")
       },
     })
@@ -189,7 +189,7 @@ class room3 extends Phaser.Scene {
 
 
     // Enable debugging
-    window.player = this.player;
+    // window.player = this.player;
 
     this.bullet = this.physics.add.sprite(
       this.player.x,
@@ -255,7 +255,9 @@ class room3 extends Phaser.Scene {
     this.physics.add.overlap(this.player, [this.key1, this.key2], globalCollectKey, null, this);
     this.physics.add.overlap(this.bullet, [this.Enemy1, this.Enemy2, this.Enemy3, this.Enemy4, this.Enemy5, this.Enemy6], globalShootEnemy, null, this);
 
-
+    // arrow shoot sound
+    this.arrowShootSnd = this.sound.add("arrowShoot").setVolume(1);
+    
 
     // // Key to reload the game
     // var bDown = this.input.keyboard.addKey('B');
@@ -308,13 +310,16 @@ class room3 extends Phaser.Scene {
 
   attackLeft() {
 
-    console.log("attack left");
+    // console.log("attack left");
 
     this.bullet.x = this.player.x;
     this.bullet.y = this.player.y;
 
     this.bullet.setVisible(true);
     this.bullet.body.setEnable(true);
+
+    // play the sound
+    this.arrowShootSnd.play()
 
     // speed of the bullet
     this.bullet.body.setVelocityX(-500);
@@ -322,13 +327,16 @@ class room3 extends Phaser.Scene {
 
   attackRight() {
 
-    console.log("attack right");
+    // console.log("attack right");
 
     this.bullet.x = this.player.x;
     this.bullet.y = this.player.y;
 
     this.bullet.setVisible(true);
     this.bullet.body.setEnable(true);
+
+    // play the sound
+    this.arrowShootSnd.play()
 
     // speed of the bullet
     this.bullet.body.setVelocityX(500);
@@ -343,7 +351,7 @@ class room3 extends Phaser.Scene {
 
   // Function to jump to room1
   win(player, tile) {
-    console.log("win function");
+    // console.log("win function");
     this.scene.start("win");
   }
 

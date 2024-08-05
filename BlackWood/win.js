@@ -9,7 +9,7 @@ class win extends Phaser.Scene {
 
   create() {
     this.scene.bringToTop("win");
-    console.log("*** win");
+    // console.log("*** win");
 
     window.music.setVolume(0);
 
@@ -20,7 +20,7 @@ class win extends Phaser.Scene {
 
     // On spacebar event, call the world scene
     enterDown.on("down", function () {
-      console.log("Jump to world scene");
+      // console.log("Jump to world scene");
       window.heart = 3;
       window.key = 0;
       window.enemy = 0;

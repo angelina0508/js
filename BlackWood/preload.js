@@ -91,7 +91,7 @@
   } /////////////////// end of preload //////////////////////////////
 
   create() {
-    console.log("*** preload scene");
+    // console.log("*** preload scene");
 
     // Check for spacebar or any key here
     var spaceDown = this.input.keyboard.addKey("SPACE");
@@ -100,7 +100,7 @@
     spaceDown.on(
       "down",
       function () {
-        console.log("Jump to world scene");
+        // console.log("Jump to world scene");
 
         this.scene.start("world");
       },

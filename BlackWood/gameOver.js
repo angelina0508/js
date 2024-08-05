@@ -13,7 +13,7 @@ class gameOver extends Phaser.Scene {
 
   create() {
     this.scene.bringToTop("gameOver");
-    console.log("*** gameover scene");
+    // console.log("*** gameover scene");
 
     window.music.setVolume(0);
 
@@ -25,7 +25,7 @@ class gameOver extends Phaser.Scene {
 
     // On spacebar event, call the world scene
     enterDown.on("down", function () {
-      console.log("Jump to character scene");
+      // console.log("Jump to character scene");
       window.heart = 3;
       window.key = 0;
       window.enemy = 0;

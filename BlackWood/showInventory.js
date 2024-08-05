@@ -24,7 +24,7 @@ class showInventory extends Phaser.Scene {
     create() {
 
         //Place hearts at the top screen
-        console.log("***showInventory");
+        // console.log("***showInventory");
         this.scene.bringToTop("showInventory");
 
         //black bar
@@ -57,7 +57,7 @@ class showInventory extends Phaser.Scene {
     } //end of create
 
     updateScreen(data) {
-        console.log('Received event inventory', data);
+        // console.log('Received event inventory', data);
 
         this.keyNum.setText(data.key);
         this.journalNum.setText(data.journal)

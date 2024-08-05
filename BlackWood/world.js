@@ -36,12 +36,12 @@ class world extends Phaser.Scene {
 
   create() {
     this.scene.bringToTop("world");
-    console.log("*** world scene");
+    // console.log("*** world scene");
     window.music.setVolume(2);
 
     // Create the map
     let map = this.make.tilemap({ key: "world", });
-    console.log("Map created");
+    // console.log("Map created");
 
     // Load the game tiles
     let horror22Tiles = map.addTilesetImage("horrorCollection22", "horror22IMG");
@@ -51,11 +51,11 @@ class world extends Phaser.Scene {
     let treesgreenTiles = map.addTilesetImage("trees-green", "trees-greenIMG");
 
     let tilesArray = [horror22Tiles, pipoyaTiles, plantTiles, StairsTiles, treesgreenTiles];
-    console.log("Tilesets loaded");
+    // console.log("Tilesets loaded");
 
     // Load layers from the map
     this.groundLayer = map.createLayer("Ground", tilesArray, 0, 0);
-    console.log("Ground layer created");
+    // console.log("Ground layer created");
 
     // Check if layers are properly created
     // console.log("Ground layer width:", this.groundLayer.width);
@@ -83,7 +83,7 @@ class world extends Phaser.Scene {
 
 
     // Debug player
-    window.player = this.player;
+    // window.player = this.player;
 
     // Add any text to the game
     // this.add.text(10, 10, "Add any text here", {
@@ -118,7 +118,7 @@ class world extends Phaser.Scene {
     // Key to reload the game
     var aDown = this.input.keyboard.addKey('R');
     aDown.on('down', function () {
-      console.log("R pressed (world)");
+      // console.log("R pressed (world)");
       this.scene.start("room3intro");
     }, this);
 
@@ -148,7 +148,7 @@ class world extends Phaser.Scene {
       this.player.x < 313 &&
       this.player.y < 395
     ) {
-      console.log("Go to Room1 function");
+      // console.log("Go to Room1 function");
       this.room1();
     }
 
@@ -158,7 +158,7 @@ class world extends Phaser.Scene {
       this.player.x < 680 &&
       this.player.y < 395
     ) {
-      console.log("Go to Room2 function");
+      // console.log("Go to Room2 function");
       this.room2();
     }
 
@@ -168,7 +168,7 @@ class world extends Phaser.Scene {
       this.player.x < 1076 &&
       this.player.y < 395
     ) {
-      console.log("Go to Room3 function");
+      // console.log("Go to Room3 function");
       this.room3();
     }
 
@@ -195,17 +195,17 @@ class world extends Phaser.Scene {
 
   // Function room1
   room1(player, tile) {
-    console.log("Function to jump to room1 scene");
+    // console.log("Function to jump to room1 scene");
     this.scene.start("room1");
   }
 
   room2(player, tile) {
-    console.log("Function to jump to room2 scene");
+    // console.log("Function to jump to room2 scene");
     this.scene.start("room2");
   }
 
   room3(player, tile) {
-    console.log("Function to jump to room3 scene");
+    // console.log("Function to jump to room3 scene");
     this.scene.start("room3");
   }
 

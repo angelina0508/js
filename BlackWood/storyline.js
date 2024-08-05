@@ -17,7 +17,7 @@ class storyline extends Phaser.Scene {
 
     create() {
         this.scene.bringToTop("storyline");
-        console.log('*** storyline');
+        // console.log('*** storyline');
 
         // this.scene.bringToTop("main");
 
@@ -28,7 +28,7 @@ class storyline extends Phaser.Scene {
 
         // On spacebar event, call the world scene        
         spaceDown.on('down', function () {
-            console.log('Jump to character scene');
+            // console.log('Jump to character scene');
 
             this.scene.start("character");
         },

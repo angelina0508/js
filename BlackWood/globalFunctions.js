@@ -5,7 +5,7 @@
 // 
 ///////////////////////////////////////////////////////
 function updateInventory() {
-  console.log("*** updateInventory()")
+  // console.log("*** updateInventory()")
   // Emit events showInventory
   this.inventory = {}
   this.inventory.key = window.key
@@ -14,7 +14,7 @@ function updateInventory() {
   this.inventory.pam = window.pam
   this.inventory.heart = window.heart
 
-  console.log('*** updateInventory() Emit event', this.inventory)
+  // console.log('*** updateInventory() Emit event', this.inventory)
   this.invEvent = (event, data) => {
     this.scene.get('showInventory').events.emit(event, data);
   }
@@ -28,7 +28,7 @@ function updateInventory() {
 // 
 ///////////////////////////////////////////////////////
 function globalHitEnemy(player, item) {
-  console.log("*** player overlap enemy");
+  // console.log("*** player overlap enemy");
 
   // Shake screen
   this.cameras.main.shake(100);
@@ -37,7 +37,7 @@ function globalHitEnemy(player, item) {
 
   // deduct heart
   window.heart--;
-  console.log(window.heart)
+  // console.log(window.heart)
   item.disableBody(true, true);
 
   this.hitEnemySnd = this.sound.add("hitSound").setVolume(1);
@@ -47,7 +47,7 @@ function globalHitEnemy(player, item) {
   updateInventory.call(this)
 
   if (window.heart == 0) {
-    console.log("*** player gameOver");
+    // console.log("*** player gameOver");
     this.scene.start("gameOver");
     //this.loselifeSnd.play();
 
@@ -62,7 +62,7 @@ function globalHitEnemy(player, item) {
 // 
 /////////////////////////////////////////////////////// 
 function globalCollectKey(player, item) {
-  console.log("*** player overlap key");
+  // console.log("*** player overlap key");
 
   // Shake screen
   this.cameras.main.shake(100);
@@ -81,7 +81,7 @@ function globalCollectKey(player, item) {
 }
 
 function globalCollectJournal(player, item) {
-  console.log("*** player overlap key");
+  // console.log("*** player overlap key");
 
   // Shake screen
   this.cameras.main.shake(100);
@@ -100,7 +100,7 @@ function globalCollectJournal(player, item) {
 }
 
 function globalCollectBow(player, item) {
-  console.log("*** player overlap key");
+  // console.log("*** player overlap key");
 
   // Shake screen
   this.cameras.main.shake(100);
@@ -119,7 +119,7 @@ function globalCollectBow(player, item) {
 }
 
 function globalCollectMap2(player, item) {
-  console.log("*** player overlap key");
+  // console.log("*** player overlap key");
 
   // Shake screen
   this.cameras.main.shake(100);
@@ -138,14 +138,14 @@ function globalCollectMap2(player, item) {
 }
 
 function globalShootEnemy(player, item) {
-  console.log("*** bullet overlap enemy");
+  // console.log("*** bullet overlap enemy");
 
   // Shake screen
   this.cameras.main.shake(100);
   // arrow shoot sound
-  this.arrowShootSnd = this.sound.add("arrowShoot").setVolume(1);
+  // this.arrowShootSnd = this.sound.add("arrowShoot").setVolume(1);
   // play the sound
-  this.arrowShootSnd.play()
+  // this.arrowShootSnd.play()
 
   window.enemy++
 

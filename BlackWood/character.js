@@ -9,7 +9,7 @@ preload(){
 
     create() {
         this.scene.bringToTop("character");
-        console.log("*** character");
+        // console.log("*** character");
         window.music.setVolume(2);
 
 
@@ -22,7 +22,7 @@ preload(){
 
         // On spacebar event, call the world scene
         enterDown.on("down", function () {
-            console.log("Jump to room1intro scene");
+            // console.log("Jump to room1intro scene");
             window.heart = 3;
             window.key = 0;
 
@@ -34,7 +34,7 @@ preload(){
         // Key to reload the game
         var aDown = this.input.keyboard.addKey('R');
         aDown.on('down', function () {
-            console.log("R pressed (character)");
+            // console.log("R pressed (character)");
             this.scene.start("storyline");
         }, this);
 

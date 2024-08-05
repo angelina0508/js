@@ -30,40 +30,9 @@ class room2 extends Phaser.Scene {
   } /////////////////// end of preload //////////////////////////////
 
   create() {
-    console.log("*** room2 scene");
+    // console.log("*** room2 scene");
     // Create the map
     let map = this.make.tilemap({ key: "room2" });
-
-
-
-    // Define animations for the main character
-    // this.anims.create({
-    //   key: "MainCharacter-up",
-    //   frames: this.anims.generateFrameNumbers("MainCharacterIMG", { start: 105, end: 112 }),
-    //   frameRate: 5,
-    //   repeat: -1,
-    // });
-
-    // this.anims.create({
-    //   key: "MainCharacter-left",
-    //   frames: this.anims.generateFrameNumbers("MainCharacterIMG", { start: 118, end: 125 }),
-    //   frameRate: 5,
-    //   repeat: -1,
-    // });
-
-    // this.anims.create({
-    //   key: "MainCharacter-down",
-    //   frames: this.anims.generateFrameNumbers("MainCharacterIMG", { start: 131, end: 138 }),
-    //   frameRate: 5,
-    //   repeat: -1,
-    // });
-
-    // this.anims.create({
-    //   key: "MainCharacter-right",
-    //   frames: this.anims.generateFrameNumbers("MainCharacterIMG", { start: 144, end: 151 }),
-    //   frameRate: 5,
-    //   repeat: -1,
-    // });
 
     // Load the game tiles
     let pipoyaTiles = map.addTilesetImage("pipoya", "pipoyaIMG");
@@ -113,7 +82,7 @@ class room2 extends Phaser.Scene {
     this.player.body.setSize(this.player.width * 0.6, this.player.height * 0.8)
 
     // Debug player
-    window.player = this.player;
+    // window.player = this.player;
 
     // Add any text to the game
     this.add.text(10, 10, "Add any text here", {
@@ -187,7 +156,7 @@ class room2 extends Phaser.Scene {
       this.player.y < 326 &&
       this.player.y > 137
     ) {
-      console.log("Go to Room2 function");
+      // console.log("Go to Room2 function");
       this.world();
     }
 
@@ -217,7 +186,7 @@ class room2 extends Phaser.Scene {
 
   // Function to jump to room2
   world(player, tile) {
-    console.log("world function");
+    // console.log("world function");
     this.scene.start("world");
   }
 

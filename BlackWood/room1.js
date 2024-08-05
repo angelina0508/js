@@ -42,7 +42,7 @@ class room1 extends Phaser.Scene {
   }    /////////////////// end of preload //////////////////////////////
 
   create() {
-    console.log("*** room1 scene");
+    // console.log("*** room1 scene");
 
     // Create the map
     let map = this.make.tilemap({ key: "room1" });
@@ -156,19 +156,19 @@ class room1 extends Phaser.Scene {
       repeat: -1,
 
       onYoyo: () => {
-        console.log('onYoyo, play Enemy4-up anims');
+        // console.log('onYoyo, play Enemy4-up anims');
         this.Enemy4.play("Jack-down")
 
       },
       onRepeat: () => {
-        console.log('onRepeat, play Enemy4-down anims');
+        // console.log('onRepeat, play Enemy4-down anims');
         this.Enemy4.play("Jack-up")
       },
     })
 
 
     // Enable debugging
-    window.player = this.player;
+    // window.player = this.player;
 
     this.player.setCollideWorldBounds(true); // don't go out of the this.map
 
@@ -242,7 +242,7 @@ class room1 extends Phaser.Scene {
       this.player.y < 550 &&
       this.player.y > 409
     ) {
-      console.log("Go to Room1 function");
+      // console.log("Go to Room1 function");
       this.world();
     }
 
@@ -265,7 +265,7 @@ class room1 extends Phaser.Scene {
     }
   } /////////////////// end of update //////////////////////////////
   hitEnemy(player, enemy) {
-    console.log("Player hit enemy");
+    // console.log("Player hit enemy");
 
     // shake screen
     this.cameras.main.shake(300);
@@ -277,7 +277,7 @@ class room1 extends Phaser.Scene {
 
   // Function to jump to room1
   world(player, tile) {
-    console.log("world function");
+    // console.log("world function");
     this.scene.start("world");
   }
 

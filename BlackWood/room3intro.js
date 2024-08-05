@@ -17,7 +17,7 @@ class room3intro extends Phaser.Scene {
 
     create() {
         this.scene.bringToTop("room3intro");
-        console.log('*** room3 intro');
+        // console.log('*** room3 intro');
 
 
         this.add.image(0, 0, 'room3intro').setOrigin(0, 0);
@@ -27,7 +27,7 @@ class room3intro extends Phaser.Scene {
 
         // On spacebar event, call the world scene        
         spaceDown.on('down', function () {
-            console.log('Jump to world scene');
+            // console.log('Jump to world scene');
 
             this.scene.start("world");
         },
@@ -37,7 +37,7 @@ class room3intro extends Phaser.Scene {
         // Key to reload the game
         var aDown = this.input.keyboard.addKey('R');
         aDown.on('down', function () {
-            console.log("R pressed (room3intro)");
+            // console.log("R pressed (room3intro)");
             this.scene.start("room2intro");
         }, this);
     } /////////////// end of create ///////////////
