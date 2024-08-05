@@ -2,7 +2,7 @@
 //
 // access this function using updateInventory.call(this)
 // Uses a JS function to prevent repeated codes
-// 
+// jkl
 ///////////////////////////////////////////////////////
 function updateInventory() {
   // console.log("*** updateInventory()")
@@ -143,9 +143,9 @@ function globalShootEnemy(player, item) {
   // Shake screen
   this.cameras.main.shake(100);
   // arrow shoot sound
-  // this.arrowShootSnd = this.sound.add("arrowShoot").setVolume(1);
+  this.hurtSnd = this.sound.add("hurtSnd").setVolume(1);
   // play the sound
-  // this.arrowShootSnd.play()
+  this.hurtSnd.play()
 
   window.enemy++
 

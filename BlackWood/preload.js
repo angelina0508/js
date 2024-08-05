@@ -85,6 +85,8 @@
     this.load.audio("hitSound", "assets/hitSound.mp3");
     this.load.audio("victorySnd", "assets/gameSuccess.mp3");
     this.load.audio("arrowShoot", "assets/arrowShoot.mp3");
+    this.load.audio("hurtSnd", "assets/hurtSnd.mp3");
+    
     
     
 
